@@ -30,3 +30,5 @@ $ npm install
 $ cd app
 $ yarn start
 ```
+
+Once started, open `http://localhost:3000`
