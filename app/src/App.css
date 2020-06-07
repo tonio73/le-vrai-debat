@@ -1,9 +1,7 @@
-.App-header {
-  background-color: white; 
-  min-height: 100vh;
+/*== Top page ==*/
+
+.app-wrap {
   display: flex;
-  /*flex-direction: column;*/
-  color:  #282c34;;
 }
 
 .chart-wrap {
@@ -15,19 +13,6 @@
 }
 
 /*== Components ==*/
-
-.word-cloud {
-  cursor: pointer;
-}
-
-.tooltip {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 2px 2px;
-  box-shadow: 3px 3px 2px 3px #ccc;
-  margin-right: 7px;
-}
 
 /*= Network graph =*/
 
@@ -46,6 +31,8 @@ svg .label span{
   display: inline-block;
   vertical-align: middle;
 }
+
+/*= Contribution list =*/
 
 .contribution-list-title {
   font-size: 2em;
@@ -79,4 +66,19 @@ svg .label span{
 .contribution-list .vote-count {
   padding-top: 3px;
   font-weight: 500;
+}
+
+/*= Misc. =*/
+
+.word-cloud {
+  cursor: pointer;
+}
+
+.tooltip {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 2px;
+  box-shadow: 3px 3px 2px 3px #ccc;
+  margin-right: 7px;
 }

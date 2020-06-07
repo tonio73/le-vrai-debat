@@ -7,7 +7,7 @@ const ContributionList = (props) => {
   if(props.contributions !== undefined) {
     contributionSummary = props.contributions
       .map((c, i) => <li key={i}>
-        <div className="contribution-title">{c.contribution_versions_title}</div>
+        <h1 className="contribution-title">{c.contribution_versions_title}</h1>
         <div className="contribution-body">{c.contribution_versions_bodyText}</div>
         <div className="vote-count">{c.contributions_votesCount} votes dont {c.contributions_votesCountOk} favorables</div>
       </li>)

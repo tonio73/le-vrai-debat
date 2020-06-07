@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="app-wrap">
         <div className="chart-wrap">
           <Chart chartId='first' width={900} height={600} zoomtool={false}>
             <NetworkGraph width={900} height={600} data={graphData} strength={6500}
@@ -52,7 +52,7 @@ function App() {
         <div className="contributions-wrap">
           <ContributionList title={filterTitle} contributions={selectedContributions}></ContributionList>
         </div>
-      </header>
+      </div>
     </div>
   );
 }
