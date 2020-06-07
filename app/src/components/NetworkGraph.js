@@ -27,6 +27,8 @@ const NetworkGraph = (props) => {
   }
 
   function getColor(d) {
+    if(d.id === 'root')
+      return '#fafafe'
     return props.colors[d.id % props.colors.length]
   }
 
@@ -45,12 +47,14 @@ const NetworkGraph = (props) => {
           d.target = d.target_id;
         });
 
-        d3.select(linkRef.current).style("stroke", "#aaa")
+        d3.select(linkRef.current)
+          .attr("class", "link")
           .selectAll("line")
           .data(graph.links)
           .enter().append("line");
 
-        d3.select(nodeRef.current).attr("class", "nodes")
+        d3.select(nodeRef.current)
+          .attr("class", "nodes")
           .selectAll("ellipse")
           .data(graph.nodes)
           .enter().append("ellipse")
@@ -74,12 +78,12 @@ const NetworkGraph = (props) => {
               setTooltip(false)
             }) */
             .on("click", function(d){
-              props.onClick(d.id)
+              props.onClick(d.id, d.name, null)
             }) 
-            .call(d3.drag()
+         /*   .call(d3.drag()
               .on("start", dragstarted)
               .on("drag", dragged)
-              .on("end", dragended))
+              .on("end", dragended)) */
             .append("xhtml:div")
               .style("line-height", function(d) { return (2 * getRadiusY(d)) + 'px';})
               .style("font-size", getFontSize)
@@ -138,10 +142,9 @@ const NetworkGraph = (props) => {
 }
 
 NetworkGraph.propTypes = {
-  x: PropTypes.number,
-  y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
+  data: PropTypes.object
 }
 
 export default NetworkGraph

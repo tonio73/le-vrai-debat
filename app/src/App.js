@@ -1,27 +1,56 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
-import graph_data from './data/le-vrai-debat.json'
+import graphData from './data/le-vrai-debat.json'
 import Chart from './components/Chart'
 import NetworkGraph from './components/NetworkGraph'
+import ContributionList from './components/ContributionList'
 
 var d3 = require("d3")
 
 function App() {
 
-  function topic_click(topic){
-    console.log("Topic clicked: " + topic)
+  const [loaded, setLoaded] = React.useState(false)
+  const [filterTitle, setFilterTitle] = React.useState(null)
+  const [selectedContributions, setSelectedContributions] = React.useState([])
+
+  // Get the contributions related to the topic (& keyword) or the whole (id="root")
+  function getTopicContributions(topic_id) {
+    const filePath = '/data/topic_' + topic_id + '_main_contributions.json'
+    axios.get(filePath)
+      .then((result) => {
+        setSelectedContributions(result.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
-  const colors = d3.schemeSet3 //d3.schemeCategory10
-  
+  // Update the view when a topic (and a keyword) are selected
+  function selectTopic(topic_id, topic_title, keyword) {
+    console.log("Topic clicked: topic='" + topic_title + "', keyword=" + keyword)
+
+    setFilterTitle(topic_title)
+    getTopicContributions(topic_id)
+  }
+
+  // Select root by default
+  React.useEffect(() => {
+    selectTopic('root', "Le Vrai Débat", null)
+    setLoaded(true)
+  }, [loaded])
+
   return (
     <div className="App">
       <header className="App-header">
         <div className="chart-wrap">
           <Chart chartId='first' width={900} height={600} zoomtool={false}>
-            <NetworkGraph width={900} height={600} data={graph_data} strength={7000} 
-              onClick={topic_click} colors={colors}></NetworkGraph>
+            <NetworkGraph width={900} height={600} data={graphData} strength={6500}
+              onClick={selectTopic} colors={d3.schemeSet3}></NetworkGraph>
           </Chart>
+        </div>
+        <div className="contributions-wrap">
+          <ContributionList title={filterTitle} contributions={selectedContributions}></ContributionList>
         </div>
       </header>
     </div>

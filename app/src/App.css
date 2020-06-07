@@ -1,21 +1,20 @@
-.App {
-  text-align: center;
-}
-
 .App-header {
-  background-color: white; /* #282c34;*/
+  background-color: white; 
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  /*align-items: center;
-  justify-content: center;*/
-  font-size: calc(10px + 2vmin);
+  /*flex-direction: column;*/
   color:  #282c34;;
 }
 
-.App-link {
-  color: #61dafb;
+.chart-wrap {
+  flex: 50%;
 }
+
+.contributions-wrap {
+  flex: 50%;
+}
+
+/*== Components ==*/
 
 .word-cloud {
   cursor: pointer;
@@ -30,8 +29,54 @@
   margin-right: 7px;
 }
 
+/*= Network graph =*/
+
+svg .link {
+  stroke-width: 1px;
+  stroke: #eee;
+}
+
+svg .label {
+  cursor: pointer;
+  text-align: center;
+}
+
 svg .label span{
   line-height: normal;
   display: inline-block;
   vertical-align: middle;
+}
+
+.contribution-list-title {
+  font-size: 2em;
+  font-weight: 300;
+  padding:  0 15px 5px 15px;
+}
+
+.contribution-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contribution-list > li {
+  margin-bottom: 10px;
+  padding: 0 15px 5px 15px;
+}
+
+.contribution-list .contribution-title {
+  padding-bottom: 2px;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.contribution-list .contribution-body {
+  max-height: 80px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.contribution-list .vote-count {
+  padding-top: 3px;
+  font-weight: 500;
 }
