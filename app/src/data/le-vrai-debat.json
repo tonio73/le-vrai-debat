@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "Le Grand Débat",
+      "votesCount": 679938,
+      "votesCountOk": 523266
+    },
+    {
+      "id": 1,
+      "name": "Expression Libre",
+      "votesCount": 165090,
+      "votesCountOk": 123143
+    },
+    {
+      "id": 2,
+      "name": "Economie, finances, travail, comptes-publics",
+      "votesCount": 154551,
+      "votesCountOk": 129428
+    },
+    {
+      "id": 3,
+      "name": "Démocratie, institutions, RIC",
+      "votesCount": 132063,
+      "votesCountOk": 104900
+    },
+    {
+      "id": 4,
+      "name": "Education, jeunesse, enseignement-supérieur, recherche, innovation",
+      "votesCount": 58864,
+      "votesCountOk": 42265
+    },
+    {
+      "id": 5,
+      "name": "Europe, affaires-étrangères, outre-mer",
+      "votesCount": 48031,
+      "votesCountOk": 33354
+    },
+    {
+      "id": 6,
+      "name": "Santé, solidarité, handicap",
+      "votesCount": 40866,
+      "votesCountOk": 31166
+    },
+    {
+      "id": 7,
+      "name": "Justice, police, armée",
+      "votesCount": 28707,
+      "votesCountOk": 21075
+    },
+    {
+      "id": 8,
+      "name": "Sport, culture",
+      "votesCount": 27291,
+      "votesCountOk": 18367
+    },
+    {
+      "id": 9,
+      "name": "Transition écologique et solidaire, agriculture, alimentation",
+      "votesCount": 24475,
+      "votesCountOk": 19568
+    }
+  ],
+  "links": [
+
+    {
+      "source_id": 0,
+      "target_id": 1
+    },
+    {
+      "source_id": 0,
+      "target_id": 2
+    },
+    {
+      "source_id": 0,
+      "target_id": 3
+    },
+
+    {
+      "source_id": 0,
+      "target_id": 4
+    },
+            {
+      "source_id": 0,
+      "target_id": 5
+    },
+    {
+      "source_id": 0,
+      "target_id": 6
+    },
+     {
+      "source_id": 0,
+      "target_id": 7
+    },
+    {
+      "source_id": 0,
+      "target_id": 8
+    },
+    {
+      "source_id": 0,
+      "target_id": 9
+    }
+  ]
+}

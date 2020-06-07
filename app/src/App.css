@@ -29,3 +29,9 @@
   box-shadow: 3px 3px 2px 3px #ccc;
   margin-right: 7px;
 }
+
+svg .label span{
+  line-height: normal;
+  display: inline-block;
+  vertical-align: middle;
+}

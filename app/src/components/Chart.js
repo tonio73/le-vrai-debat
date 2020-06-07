@@ -15,10 +15,12 @@ const Chart = (props) => {
       const contentElement = d3.select(contentRef.current)
 
       // Zoom & pan
+      if(props.zoomtool) {
       svg.call(d3.zoom()
         .extent([[0, 0], [props.width, props.height]])
         .scaleExtent([1, 8])
         .on("zoom", zoomed));
+      }
 
       function zoomed() {
         contentElement.attr("transform", d3.event.transform);
