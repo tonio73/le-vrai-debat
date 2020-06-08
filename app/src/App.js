@@ -44,8 +44,8 @@ function App() {
     <div className="App">
       <div className="app-wrap">
         <div className="chart-wrap">
-          <Chart chartId='first' width={900} height={600} zoomtool={false}>
-            <NetworkGraph width={900} height={600} data={graphData} strength={6500}
+          <Chart chartId='first' width={700} height={600} zoomtool={false}>
+            <NetworkGraph width={700} height={600} data={graphData} strength={6500}
               onClick={selectTopic} colors={d3.schemeSet3}></NetworkGraph>
           </Chart>
         </div>

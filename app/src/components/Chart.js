@@ -15,27 +15,30 @@ const Chart = (props) => {
       const contentElement = d3.select(contentRef.current)
 
       // Zoom & pan
-      if(props.zoomtool) {
-      svg.call(d3.zoom()
-        .extent([[0, 0], [props.width, props.height]])
-        .scaleExtent([1, 8])
-        .on("zoom", zoomed));
+      if (props.zoomtool) {
+        svg.call(d3.zoom()
+          .extent([[0, 0], [props.width, props.height]])
+          .scaleExtent([1, 8])
+          .on("zoom", zoomed));
       }
 
       function zoomed() {
         contentElement.attr("transform", d3.event.transform);
-      //  xAxis.call(makeXAxis, d3.event.transform.rescaleX(scaleX));
-      //  yAxis.call(makeYAxis, d3.event.transform.rescaleY(scaleY));
+        //  xAxis.call(makeXAxis, d3.event.transform.rescaleX(scaleX));
+        //  yAxis.call(makeYAxis, d3.event.transform.rescaleY(scaleY));
       }
     })
 
+  const viewbox = "0 0 " + props.width + " " + props.height
+
   return <div>
-    <svg id={props.chartId} width={props.width} height={props.height} ref={svgRef}>
+    <svg id={props.chartId} viewBox={viewbox} ref={svgRef}>
       <g ref={contentRef}>
         {props.children}
-        </g>
+      </g>
     </svg>
   </div>
+  // width={props.width} height={props.height} 
 }
 
 Chart.propTypes = {
