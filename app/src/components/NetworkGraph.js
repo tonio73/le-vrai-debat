@@ -23,7 +23,7 @@ const NetworkGraph = (props) => {
   }
 
   function getFontSize(d) {
-    return ((d.votesCount) ? (2 * Math.log(d.votesCount / Math.max(30, d.name.length))) : defaultFontSize) + "px";
+    return ((d.votesCount) ? (2 * Math.log(d.votesCount / Math.max(30, d.name.length))) : defaultFontSize);
   }
 
   function getColor(d) {
@@ -36,9 +36,10 @@ const NetworkGraph = (props) => {
   React.useEffect(
     () => {
       const simulation = d3.forceSimulation()
+        .force("center", d3.forceCenter(props.width / 2, props.height / 2))
         .force("link", d3.forceLink().id(function (d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(-props.strength))
-        .force("center", d3.forceCenter(props.width / 2, props.height / 2));
+        .force("charge", d3.forceManyBody().strength(props.chargeStrength))
+        .force("collide", d3.forceCollide().strength(props.collideStrength).radius(getRadiusX));
 
       const graph = props.data
 
@@ -46,6 +47,12 @@ const NetworkGraph = (props) => {
         d.source = d.source_id;
         d.target = d.target_id;
       });
+
+      simulation.nodes(graph.nodes)
+        .on("tick", ticked);
+
+      simulation.force("link")
+        .links(graph.links);
 
       // Links
       d3.select(linkRef.current)
@@ -56,13 +63,51 @@ const NetworkGraph = (props) => {
 
       // Nodes
       const nodes = d3.select(nodeRef.current)
-        .attr("class", "nodes")
-        .selectAll("ellipse")
+        .selectAll("g")
         .data(graph.nodes)
         .enter()
         .append('g')
+        .attr('class', 'node')
 
-      nodes.on("click", function (d) {
+      nodes.on("click", d => {
+        const selColor = getColor(d)
+        const selSubFontSize = 0.8 * getFontSize(d)
+
+        // Set selection on node
+        nodes.selectAll('ellipse')
+          .classed('selected', e => e.id === d.id)
+        
+        nodes.filter(e => e.id !== d.id).selectAll('.sub-node').remove()
+
+        /*
+        // Show keyword ring
+        const selKeyWords = nodes.filter(e => e.id === d.id).selectAll('.sub-node')
+          .data(d => d.keywords)
+          .enter()
+          .append('g')
+          .classed('sub-node', true)
+          
+        const subNodeRadiusX = 40, subNodeRadiusY = 20;
+
+        selKeyWords.append("ellipse")
+            .classed('node-shape', true)
+            .attr("rx", subNodeRadiusX)
+            .attr("ry", subNodeRadiusY)
+            .style("fill", selColor)
+
+        selKeyWords.append("foreignObject")
+            .attr("width", function (d) { return 2 * subNodeRadiusX; })
+            .attr("height", function (d) { return 2 * subNodeRadiusY; })
+            .attr("x", function (d) { return - subNodeRadiusX; })
+            .attr("y", function (d) { return - subNodeRadiusY; })
+            .append("xhtml:div")
+            .style("line-height", function (d) { return (2 * subNodeRadiusY) + 'px'; })
+            .style("font-size", selSubFontSize + "px")
+            .attr("class", "label")
+            .html(function (d) { return '<span>' + d.name + '</span>'; })
+        */
+
+        // Signal selection to parent
         props.onClick(d.id, d.name, null)
       });
       /*UNSTABLE .on("mouseover", function (d) {
@@ -80,11 +125,10 @@ const NetworkGraph = (props) => {
 
       // Shape of node
       nodes.append("ellipse")
+        .attr('class', 'node-shape')
         .attr("rx", getRadiusX)
         .attr("ry", getRadiusY)
-        .style("fill", getColor)
-        .style("stroke", "#eee")
-        .style("stroke-width", "1px");
+        .style("fill", getColor);
 
       // Label of node
       nodes.append("foreignObject")
@@ -94,17 +138,9 @@ const NetworkGraph = (props) => {
         .attr("y", function (d) { return - getRadiusY(d); })
         .append("xhtml:div")
         .style("line-height", function (d) { return (2 * getRadiusY(d)) + 'px'; })
-        .style("font-size", getFontSize)
+        .style("font-size", d => getFontSize(d) + "px")
         .attr("class", "label")
         .html(function (d) { return '<span>' + d.name + '</span>'; });
-
-      simulation
-        .nodes(graph.nodes)
-        .on("tick", ticked);
-
-      simulation.force("link")
-        .links(graph.links);
-
 
       function ticked() {
         d3.select(linkRef.current).selectAll("line")
@@ -113,7 +149,7 @@ const NetworkGraph = (props) => {
           .attr("x2", function (d) { return d.target.x; })
           .attr("y2", function (d) { return d.target.y; });
 
-        d3.select(nodeRef.current).selectAll("g")
+        d3.select(nodeRef.current).selectAll(".node")
           .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")" });
       }
 
@@ -139,7 +175,6 @@ const NetworkGraph = (props) => {
   return <g className="network-graph">
     <g ref={linkRef}></g>
     <g ref={nodeRef}></g>
-    <g ref={labelRef}></g>
   </g>
   //   {tooltip && <Tooltip x={0} y={0} info={tooltipText}></Tooltip>}
 }

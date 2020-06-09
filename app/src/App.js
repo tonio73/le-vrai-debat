@@ -41,14 +41,15 @@ function App() {
   }, [loaded])
 
   // Viewport sizing dimensions but not to set hard dimensions on the graph
-  const width=700, height=600;
+  const width=700, height=700;
 
   return (
     <div className="App">
       <div className="app-wrap">
         <div className="chart-wrap">
           <Chart chartId='first' width={width} height={height} zoomtool={false}>
-            <NetworkGraph width={width} height={height} data={graphData} strength={6500}
+            <NetworkGraph width={width} height={height} data={graphData} 
+              chargeStrength={-4000} collideStrength={0.5}
               onClick={selectTopic} colors={d3.schemeSet3}></NetworkGraph>
           </Chart>
         </div>

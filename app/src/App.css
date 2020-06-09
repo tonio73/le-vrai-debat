@@ -21,6 +21,16 @@ svg .link {
   stroke: #eee;
 }
 
+svg .node-shape{
+  stroke-width: 1px;
+  stroke: #eee;
+}
+
+svg .node-shape.selected{
+  stroke-width: 3px;
+  stroke: #faa;
+}
+
 svg .label {
   cursor: pointer;
   text-align: center;
