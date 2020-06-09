@@ -4,11 +4,16 @@ import PropTypes from 'prop-types'
 
 const d3 = require("d3")
 
-const defaultRadiusX = 60, defaultRadiusY = 50;
-// Default font size [px]
-const defaultFontSize = 14;
-
 const NetworkGraph = (props) => {
+
+  const graph = props.data
+
+  const ring1Radius = 250, ring1RadiusDelta = 30;
+  const ring1PhaseShift = 2 * Math.PI / (graph.nodes.length - 1);
+
+  const defaultRadiusX = 60, defaultRadiusY = 50;
+  // Default font size [px]
+  const defaultFontSize = 14;
 
   const linkRef = React.useRef(''), nodeRef = React.useRef(''), labelRef = React.useRef('');
   //const [tooltip, setTooltip] = React.useState(false)
@@ -32,34 +37,45 @@ const NetworkGraph = (props) => {
     return props.colors[d.id % props.colors.length]
   }
 
+  function getLinkTargetX(d) {
+    return centerX + ring1Radius * Math.cos(ring1PhaseShift * d.target_id)
+  }
+
+  function getLinkTargetY(d) {
+    return centerY + ring1Radius * Math.sin(ring1PhaseShift * d.target_id)
+  }
+
+  function getNodeX(d) {
+    if(d.id === 'root') {
+      return centerX
+    }
+    return centerX + (ring1Radius - ring1RadiusDelta * (d.id & 1)) * Math.cos(ring1PhaseShift * d.id)
+  }
+
+  function getNodeY(d) {
+    if(d.id === 'root') {
+      return centerY
+    }
+    return centerY + (ring1Radius - ring1RadiusDelta * (d.id & 1)) * Math.sin(ring1PhaseShift * d.id)
+  }
+
+  const centerX = props.width / 2, centerY = props.height / 2
+
   // useEffect allow for d3 to interact with the DOM outside of React
   React.useEffect(
     () => {
-      const simulation = d3.forceSimulation()
-        .force("center", d3.forceCenter(props.width / 2, props.height / 2))
-        .force("link", d3.forceLink().id(function (d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(props.chargeStrength))
-        .force("collide", d3.forceCollide().strength(props.collideStrength).radius(getRadiusX));
-
-      const graph = props.data
-
-      graph.links.forEach(function (d) {
-        d.source = d.source_id;
-        d.target = d.target_id;
-      });
-
-      simulation.nodes(graph.nodes)
-        .on("tick", ticked);
-
-      simulation.force("link")
-        .links(graph.links);
 
       // Links
       d3.select(linkRef.current)
         .attr("class", "link")
         .selectAll("line")
         .data(graph.links)
-        .enter().append("line");
+        .enter()
+        .append("line")
+        .attr("x1", centerX)
+        .attr("y1", centerY)
+        .attr("x2", getLinkTargetX)
+        .attr("y2", getLinkTargetY);
 
       // Nodes
       const nodes = d3.select(nodeRef.current)
@@ -68,6 +84,7 @@ const NetworkGraph = (props) => {
         .enter()
         .append('g')
         .attr('class', 'node')
+        .attr("transform", d => "translate(" + getNodeX(d) + "," + getNodeY(d) + ")")
 
       nodes.on("click", d => {
         const selColor = getColor(d)
@@ -76,7 +93,7 @@ const NetworkGraph = (props) => {
         // Set selection on node
         nodes.selectAll('ellipse')
           .classed('selected', e => e.id === d.id)
-        
+
         nodes.filter(e => e.id !== d.id).selectAll('.sub-node').remove()
 
         /*
@@ -117,11 +134,11 @@ const NetworkGraph = (props) => {
           .on("mouseout", function (d) {
            setTooltip(false)
          }) */
-        /*UNEEDED user interaction
-          .call(d3.drag()
-             .on("start", dragstarted)
-             .on("drag", dragged)
-             .on("end", dragended)) */
+      /*UNEEDED user interaction
+        .call(d3.drag()
+           .on("start", dragstarted)
+           .on("drag", dragged)
+           .on("end", dragended)) */
 
       // Shape of node
       nodes.append("ellipse")
@@ -141,35 +158,6 @@ const NetworkGraph = (props) => {
         .style("font-size", d => getFontSize(d) + "px")
         .attr("class", "label")
         .html(function (d) { return '<span>' + d.name + '</span>'; });
-
-      function ticked() {
-        d3.select(linkRef.current).selectAll("line")
-          .attr("x1", function (d) { return d.source.x; })
-          .attr("y1", function (d) { return d.source.y; })
-          .attr("x2", function (d) { return d.target.x; })
-          .attr("y2", function (d) { return d.target.y; });
-
-        d3.select(nodeRef.current).selectAll(".node")
-          .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")" });
-      }
-
-      function dragstarted(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart()
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-      }
-
-      function dragged(d) {
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-      }
-
-      function dragended(d) {
-        if (!d3.event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-      }
-
     })
 
   return <g className="network-graph">
