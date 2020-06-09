@@ -13,8 +13,16 @@ const ContributionList = (props) => {
       </li>)
   }
 
+  var title = ''
+  if(props.title){
+    title += props.title.topic
+    if(!!props.title.keyword) {
+      title += ' > ' + props.title.keyword
+    }
+  }
+
   return <div>
-    {props.title && <h1 className='contribution-list-title'>{props.title}</h1>}
+    {props.title && <h1 className='contribution-list-title'>{title}</h1>}
     <ul className="contribution-list">
       {contributionSummary}
     </ul>
@@ -22,7 +30,7 @@ const ContributionList = (props) => {
 }
 
 ContributionList.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.object,
   contributions: PropTypes.array
 }
 
