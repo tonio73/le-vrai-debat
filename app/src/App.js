@@ -13,6 +13,7 @@ function App() {
   const [loaded, setLoaded] = React.useState(false)
   const [filterTitle, setFilterTitle] = React.useState({topic: null, keyword: null})
   const [selectedContributions, setSelectedContributions] = React.useState([])
+  const [selectionId, setSelectionId] = React.useState("root_unknown")
 
   // Get the contributions related to the topic (& keyword) or the whole (id="root")
   function getTopicContributions(topic_id, keyword_id) {
@@ -44,12 +45,15 @@ function App() {
 
     setFilterTitle({topic: topic_title, keyword: keyword})
     getTopicContributions(topic_id, keyword_id)
+    setSelectionId('' + topic_id + '_' + ((keyword_id !== null)?keyword_id:'unknown'))
   }
 
   // Select root by default
   React.useEffect(() => {
-    selectTopic('root', "Le Vrai Débat", null)
-    setLoaded(true)
+    if(!loaded){
+      selectTopic('root', "Le Vrai Débat", null)
+      setLoaded(true)
+    }
   }, [loaded])
 
   // Viewport sizing dimensions but not to set hard dimensions on the graph
@@ -65,7 +69,7 @@ function App() {
           </Chart>
         </div>
         <div className="contributions-wrap">
-          <ContributionList title={filterTitle} contributions={selectedContributions}></ContributionList>
+          <ContributionList title={filterTitle} contributions={selectedContributions} id={selectionId}></ContributionList>
         </div>
       </div>
     </div>

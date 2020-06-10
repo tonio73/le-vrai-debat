@@ -57,8 +57,9 @@ svg .label span{
 }
 
 .contribution-list > li {
-  margin-bottom: 10px;
-  padding: 0 15px 5px 15px;
+  margin: 10px 15px 15px 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
 }
 
 .contribution-list .contribution-title {
@@ -67,15 +68,46 @@ svg .label span{
   font-weight: 500;
 }
 
-.contribution-list .contribution-body {
-  max-height: 80px;
-  overflow: hidden;
+.contribution-list .contribution-body{
   margin-bottom: 5px;
 }
 
+.contribution-list .contribution-body .text{
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.contribution-list .contribution-body .mask{
+  height: 30px;
+  width: 100%;
+  margin-top: -30px;
+  opacity: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.contribution-list .contribution-body .text.expanded {
+  max-height: none;
+}
+
+.contribution-list .bottom{
+  /*padding-top: 5px;*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.contribution-list .buttons {
+  align-self: center;
+}
+
+.buttons button{
+  background-color: transparent;
+  border-radius: 100%;
+  border: 1px solid #aaa;
+}
+
 .contribution-list .vote-count {
-  padding-top: 3px;
   font-weight: 500;
+  align-self: center;
 }
 
 /*= Misc. =*/
