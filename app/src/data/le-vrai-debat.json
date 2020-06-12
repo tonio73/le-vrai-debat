@@ -14,90 +14,90 @@
       "name": "Démocratie, institutions, RIC",
       "votesCount": 132063,
       "votesCountOk": 104900,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-                   {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-                   {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-                   {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "al\u00e9atoire"}, {"id": 1, "name": "mourir"}, 
+        {"id": 2, "name": "sdf"}, {"id": 3, "name": "google"}, 
+        {"id": 4, "name": "pr\u00e9caire"}, {"id": 5, "name": "tpe"}, 
+        {"id": 6, "name": "r\u00e9ferendum"}, {"id": 7, "name": "racket"}]
     },
     {
       "id": 1,
       "name": "Economie, finances, travail, comptes-publics",
       "votesCount": 154551,
       "votesCountOk": 129428,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "voiture"}, {"id": 1, "name": "public"}, 
+        {"id": 2, "name": "d\u00e9veloppement"}, {"id": 3, "name": "pr\u00e9caire"}, 
+        {"id": 4, "name": "choix"}, {"id": 5, "name": "d\u00e9couvert"}, 
+        {"id": 6, "name": "patrimoine"}, {"id": 7, "name": "pr\u00e9f\u00e9rence"}]
     },
     {
       "id": 2,
       "name": "Education, jeunesse, enseignement-supérieur, recherche, innovation",
       "votesCount": 58864,
       "votesCountOk": 42265,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "constitutionnel"}, {"id": 1, "name": "etat"}, 
+        {"id": 2, "name": "enfant"}, {"id": 3, "name": "effectif"}, 
+        {"id": 4, "name": "justice"}, {"id": 5, "name": "pratique"}, 
+        {"id": 6, "name": "vocation"}, {"id": 7, "name": "priv\u00e9"}]
     },
     {
       "id": 3,
       "name": "Europe, affaires-étrangères, outre-mer",
       "votesCount": 48031,
       "votesCountOk": 33354,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "avantage"}, {"id": 1, "name": "\u00e9conomie"}, 
+        {"id": 2, "name": "construction"}, {"id": 3, "name": "entreprise"}, 
+        {"id": 4, "name": "budget"}, {"id": 5, "name": "citoyennet\u00e9"}, 
+        {"id": 6, "name": "budget"}, {"id": 7, "name": "r\u00e9voquer"}]
     },
     {
       "id": 4,
       "name": "Justice, police, armée",
       "votesCount": 28707,
       "votesCountOk": 21075,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "r\u00e9sultat"}, {"id": 1, "name": "corps"}, 
+        {"id": 2, "name": "nombre"}, {"id": 3, "name": "pr\u00e9sident"}, 
+        {"id": 4, "name": "ch\u00f4meurs"}, {"id": 5, "name": "criminel"}, 
+        {"id": 6, "name": "d\u00e9ontologie"}, {"id": 7, "name": "interm\u00e9diaires"}]
     },
     {
       "id": 5,
       "name": "Santé, solidarité, handicap",
       "votesCount": 40866,
       "votesCountOk": 31166,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "avis"}, {"id": 1, "name": "pluralit\u00e9"}, 
+        {"id": 2, "name": "r\u00e9el"}, {"id": 3, "name": "\u00e9conomie"},
+        {"id": 4, "name": "cr\u00e9ation"}, {"id": 5, "name": "domaine"}, 
+        {"id": 6, "name": "observatoire"}, {"id": 7, "name": "prestation"}]
     },
     {
       "id": 6,
       "name": "Sport, culture",
       "votesCount": 27291,
       "votesCountOk": 18367,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "professionnel"}, {"id": 1, "name": "charge"}, 
+        {"id": 2, "name": "contr\u00f4le"}, {"id": 3, "name": "corps"}, 
+        {"id": 4, "name": "populisme"}, {"id": 5, "name": "vision"}, 
+        {"id": 6, "name": "mandats"}, {"id": 7, "name": "charte"}]
     },
     {
       "id": 7,
       "name": "Expression Libre",
       "votesCount": 165090,
       "votesCountOk": 123143,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "r\u00e9alit\u00e9"}, {"id": 1, "name": "si\u00e8ge"}, 
+        {"id": 2, "name": "tour"}, {"id": 3, "name": "adulte"}, 
+        {"id": 4, "name": "r\u00e9forme"}, {"id": 5, "name": "2017"}, 
+        {"id": 6, "name": "fondamental"}, {"id": 7, "name": "libert\u00e9"}]
     },
     {
       "id": 8,
       "name": "Transition écologique et solidaire, agriculture, alimentation",
       "votesCount": 24475,
       "votesCountOk": 19568,
-      "keywords": [{"id":0, "name": "Lorem"}, {"id":1, "name": "Ipsum"}, 
-        {"id":2, "name": "Valium"}, {"id":3, "name": "Posum"}, 
-        {"id":4, "name": "Practicum"}, {"id":5, "name": "Visium"}, 
-        {"id":6, "name": "Deuterium"}, {"id":7, "name": "Symposium"}]
+      "keywords": [{"id": 0, "name": "professionnel"}, {"id": 1, "name": "soci\u00e9t\u00e9"}, 
+        {"id": 2, "name": "consultation"}, {"id": 3, "name": "journal"}, 
+        {"id": 4, "name": "r\u00e9alit\u00e9"}, {"id": 5, "name": "\u00e9l\u00e9ment"}, 
+        {"id": 6, "name": "argent"}, {"id": 7, "name": "universel"}]
     }
   ]
 }

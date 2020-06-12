@@ -141,6 +141,10 @@ const NetworkGraph = (props) => {
         // Set selection on all nodes
         allNodes.selectAll('ellipse')
           .classed('selected', e => e.id === d.id)
+
+        allNodes.selectAll('.ring2 ellipse')
+          .classed('selected', false)
+
         // Set positions : larger radius for selected node
         const ring1Nodes = d3.selectAll('.ring1')
         ring1Nodes.attr("transform", e => "translate(" + getNodeX(e, e.id === d.id) + "," + getNodeY(e, e.id === d.id) + ")")
@@ -175,7 +179,6 @@ const NetworkGraph = (props) => {
             .style("line-height", (2 * subNodeRadiusY) + 'px')
             .style("font-size", selSubFontSize + "px")
             .html(e => '<span>' + e.name + '</span>')
-        
 
         selKeyWords.on('click', e => {
           // Set selection on all ring2 keyword nodes
