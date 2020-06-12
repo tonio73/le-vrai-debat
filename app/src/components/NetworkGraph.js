@@ -11,7 +11,7 @@ const NetworkGraph = (props) => {
   const centerX = props.width / 2, centerY = props.height / 2
 
   // Ring 1 : main topics
-  const ring1Radius = 250, ring1RadiusDelta = 30, ring1RadiusDeltaSel = 50;
+  const ring1Radius = 250, ring1RadiusDelta = 30, ring1RadiusDeltaSel = 80;
   const ring1PhaseShift = 2 * Math.PI / (graph.nodes.length);
 
   // Ring 2 : keywords
@@ -50,7 +50,7 @@ const NetworkGraph = (props) => {
     }
     // Position nodes as function of id (increasing from 0 to 8)
     // Add alternate offset ring1RadiusDelta
-    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected)?ring1RadiusDeltaSel:0)
+    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected===true)?ring1RadiusDeltaSel:0)
     return centerX + radius * Math.cos(ring1PhaseShift * d.id)
   }
 
@@ -58,7 +58,7 @@ const NetworkGraph = (props) => {
     if (d.id === 'root') {
       return centerY
     }
-    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected)?ring1RadiusDeltaSel:0)
+    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected===true)?ring1RadiusDeltaSel:0)
     return centerY +  radius * Math.sin(ring1PhaseShift * d.id)
   }
 

@@ -14,9 +14,9 @@
       "name": "Démocratie, institutions, RIC",
       "votesCount": 132063,
       "votesCountOk": 104900,
-      "keywords": [{"id": 0, "name": "al\u00e9atoire"}, {"id": 1, "name": "mourir"}, 
-        {"id": 2, "name": "sdf"}, {"id": 3, "name": "google"}, 
-        {"id": 4, "name": "pr\u00e9caire"}, {"id": 5, "name": "tpe"}, 
+      "keywords": [{"id": 0, "name": "faim"}, {"id": 1, "name": "mourir"}, 
+        {"id": 2, "name": "sdf"}, {"id": 3, "name": "Google"}, 
+        {"id": 4, "name": "pr\u00e9caire"}, {"id": 5, "name": "entreprise"}, 
         {"id": 6, "name": "r\u00e9ferendum"}, {"id": 7, "name": "racket"}]
     },
     {
@@ -24,7 +24,7 @@
       "name": "Economie, finances, travail, comptes-publics",
       "votesCount": 154551,
       "votesCountOk": 129428,
-      "keywords": [{"id": 0, "name": "voiture"}, {"id": 1, "name": "public"}, 
+      "keywords": [{"id": 0, "name": "discipline"}, {"id": 1, "name": "public"}, 
         {"id": 2, "name": "d\u00e9veloppement"}, {"id": 3, "name": "pr\u00e9caire"}, 
         {"id": 4, "name": "choix"}, {"id": 5, "name": "d\u00e9couvert"}, 
         {"id": 6, "name": "patrimoine"}, {"id": 7, "name": "pr\u00e9f\u00e9rence"}]
@@ -74,9 +74,9 @@
       "name": "Sport, culture",
       "votesCount": 27291,
       "votesCountOk": 18367,
-      "keywords": [{"id": 0, "name": "professionnel"}, {"id": 1, "name": "charge"}, 
-        {"id": 2, "name": "contr\u00f4le"}, {"id": 3, "name": "corps"}, 
-        {"id": 4, "name": "populisme"}, {"id": 5, "name": "vision"}, 
+      "keywords": [{"id": 0, "name": "professionnel"}, {"id": 1, "name": "salaires"}, 
+        {"id": 2, "name": "contr\u00f4le"}, {"id": 3, "name": "chasse"}, 
+        {"id": 4, "name": "populisme"}, {"id": 5, "name": "t\u00e9l\u00e9vision"}, 
         {"id": 6, "name": "mandats"}, {"id": 7, "name": "charte"}]
     },
     {

@@ -30,7 +30,7 @@ const ContributionItem = (props) => {
       else {
         setShowExpand(true)
       }
-    }, 0)
+    }, 10)
   }, [bodyRef])
 
   return <li key={props.id}>
