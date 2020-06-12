@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-//UNSTABLE import Tooltip from './Tooltip'
+import Tooltip from './Tooltip'
 
 const d3 = require("d3")
 
@@ -26,9 +26,10 @@ const NetworkGraph = (props) => {
   const transitionDurationMs = 2000
 
   // References to DOM elements
-  const chartRef = React.useRef('');
-  //const [tooltip, setTooltip] = React.useState(false)
-  //const [tooltipText, setTooltipText] = React.useState('')
+  const chartRef = React.useRef('')
+  const tooltipRef = React.useRef('')
+  const [tooltipTitle, setTooltipTitle] = React.useState('')
+  const [tooltipBody, setTooltipBody] = React.useState('')
 
   function getRadiusX(d) {
     if (d.id === 'root') return 120;
@@ -78,6 +79,10 @@ const NetworkGraph = (props) => {
   React.useEffect(
     () => {
 
+      // Hide tooltip
+      d3.select(tooltipRef.current)
+        .attr("opacity", 0)
+
       // Node Wraps
       const nodeWraps = d3.select(chartRef.current)
         .selectAll(".ring1")
@@ -107,7 +112,7 @@ const NetworkGraph = (props) => {
         .append('g')
         .classed('node', true)
         .classed('root', true)
-        .attr("transform", d => "translate(" + centerX + "," + centerY + ")")
+        .attr("transform", "translate(" + centerX + "," + centerY + ")")
 
       // Reselect root + ring 1 nodes
       const allNodes = nodeWraps.selectAll('.node')
@@ -203,25 +208,33 @@ const NetworkGraph = (props) => {
 
         // Signal selection to parent
         props.onClick(d.id, d.name, null)
-      });
-      /* .on("mouseover", function (d) {
-           setTooltip(true)
-           setTooltipText(d.name)
-         })
-          .on("mouseout", function (d) {
-           setTooltip(false)
-         }) */
-      /*UNEEDED user interaction
-        .call(d3.drag()
-           .on("start", dragstarted)
-           .on("drag", dragged)
-           .on("end", dragended)) */
+      })
+        .on("mouseover", function (d) {
+          setTooltipTitle(d.name)
+          setTooltipBody(d.votesCount + " votes dont " + d.votesCountOk + " favorables")
+
+          d3.select(tooltipRef.current)
+            .attr("transform", "translate(" + (d3.event.clientX+25)+ "," + (d3.event.clientY+25) + ")")
+            .transition()
+            .attr("opacity", 1)
+            .duration(500)
+        })
+        .on("mouseout", function (d) {
+
+          d3.select(tooltipRef.current)
+            .transition()
+            .attr("opacity", 0)
+            .duration(500)
+        })
     })
 
   return <g className="network-graph">
-    <g ref={chartRef}></g>
+    <g ref={chartRef}>
+    </g>
+    <g ref={tooltipRef}>
+      <Tooltip title={tooltipTitle} body={tooltipBody}></Tooltip>
+    </g>
   </g>
-  //   {tooltip && <Tooltip x={0} y={0} info={tooltipText}></Tooltip>}
 }
 
 NetworkGraph.propTypes = {

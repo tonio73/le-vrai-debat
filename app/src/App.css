@@ -125,6 +125,15 @@ svg .label span{
   border: 1px solid black;
   border-radius: 5px;
   padding: 2px 2px;
-  box-shadow: 3px 3px 2px 3px #ccc;
+  /*box-shadow: 3px 3px 2px 3px #ccc;*/
   margin-right: 7px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.tooltip .title {
+  font-weight: 500;
+  font-size: 1.1em;
+  text-align: center;
+  margin-bottom: 5px;
 }

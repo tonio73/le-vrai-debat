@@ -1,9 +1,10 @@
 import React from 'react'
 
 const Tooltip = (props) => (
-  <foreignObject x={props.x + 10} y={props.y + 10} width={150} height={50}>
+  <foreignObject width={200} height={200}>
     <div className="tooltip"> 
-      <strong>{props.info}</strong>
+      <div className="title">{props.title}</div>
+      <div className="body">{props.body}</div>
     </div>
   </foreignObject>
 )

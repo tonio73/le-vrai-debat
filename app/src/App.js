@@ -63,7 +63,7 @@ function App() {
     <div className="App">
       <div className="app-wrap">
         <div className="chart-wrap">
-          <Chart chartId='first' width={width} height={height} zoomtool={true}>
+          <Chart chartId='first' width={width} height={height} zoomtool={false}>
             <NetworkGraph width={width} height={height} data={graphData}
               onClick={selectTopic} colors={d3.schemeSet3}></NetworkGraph>
           </Chart>
