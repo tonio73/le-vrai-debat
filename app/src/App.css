@@ -2,6 +2,9 @@
 
 .app-wrap {
   display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
 }
 
 .chart-wrap {
@@ -10,6 +13,7 @@
 
 .contributions-wrap {
   flex: 50%;
+  overflow: scroll;
 }
 
 /*== Components ==*/

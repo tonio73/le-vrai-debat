@@ -11,7 +11,7 @@ const NetworkGraph = (props) => {
   const centerX = props.width / 2, centerY = props.height / 2
 
   // Ring 1 : main topics
-  const ring1Radius = 250, ring1RadiusDelta = 0, ring1RadiusDeltaSel = 60;
+  const ring1Radius = 250, ring1RadiusDeltaSel = 60;
   const ring1PhaseShift = 2 * Math.PI / (graph.nodes.length);
 
   // Ring 2 : keywords
@@ -22,22 +22,26 @@ const NetworkGraph = (props) => {
   // Default font size [px]
   const defaultFontSize = 14;
 
+  // Transition duration
+  const transitionDurationMs = 2000
+
+  // References to DOM elements
   const chartRef = React.useRef('');
   //const [tooltip, setTooltip] = React.useState(false)
   //const [tooltipText, setTooltipText] = React.useState('')
 
   function getRadiusX(d) {
-    if(d.id === 'root') return 120;
+    if (d.id === 'root') return 120;
     return (d.votesCount) ? (2.6e-1 * Math.sqrt(d.votesCount)) : defaultRadiusX;
   }
 
   function getRadiusY(d) {
-    if(d.id === 'root') return 100;
+    if (d.id === 'root') return 100;
     return (d.votesCount) ? (2.2e-1 * Math.sqrt(d.votesCount)) : defaultRadiusY;
   }
 
   function getFontSize(d) {
-    if(d.id === 'root') return 36;
+    if (d.id === 'root') return 36;
     return ((d.votesCount) ? (3.5e-1 * Math.sqrt(d.votesCount / Math.max(30, d.name.length))) : defaultFontSize);
   }
 
@@ -47,26 +51,20 @@ const NetworkGraph = (props) => {
     return props.colors[d.id % props.colors.length]
   }
 
-  function getNodeX(d, selected=false) {
-    if (d.id === 'root') {
-      return centerY
-    }
-    // Position nodes as function of id (increasing from 0 to 8)
-    // Add alternate offset ring1RadiusDelta
-    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected===true)?ring1RadiusDeltaSel:0)
+  function getNodeX(d, selected = false) {
+    if (d.id === 'root') return centerX
+    const radius = ring1Radius + ((selected === true) ? ring1RadiusDeltaSel : 0)
     return centerX + radius * Math.cos(ring1PhaseShift * d.id)
   }
 
-  function getNodeY(d, selected=false) {
-    if (d.id === 'root') {
-      return centerY
-    }
-    const radius = ring1Radius - ring1RadiusDelta * (d.id & 1) + ((selected===true)?ring1RadiusDeltaSel:0)
-    return centerY +  radius * Math.sin(ring1PhaseShift * d.id)
+  function getNodeY(d, selected = false) {
+    if (d.id === 'root') return centerY
+    const radius = ring1Radius + ((selected === true) ? ring1RadiusDeltaSel : 0)
+    return centerY + radius * Math.sin(ring1PhaseShift * d.id)
   }
 
   function getNode2X(d, parentRadiusX) {
-   // Position nodes as function of id (increasing from 0 to 8)
+    // Position nodes as function of id (increasing from 0 to 8)
     // Add alternate offset ring1RadiusDelta
     return (parentRadiusX + subNodeRadiusX) * Math.cos(ring2PhaseShift * d.id)
   }
@@ -148,15 +146,22 @@ const NetworkGraph = (props) => {
         allNodes.selectAll('.ring2 ellipse')
           .classed('selected', false)
 
+        d3.select(chartRef.current)
+          .transition()
+          .attr("transform", e => "translate(" + (centerX - getNodeX(d, true)) + "," + (centerY - getNodeY(d, true)) + ")")
+          .duration(transitionDurationMs)
+
         // Set positions : larger radius for selected node
         const ring1Nodes = d3.selectAll('.ring1')
-        ring1Nodes.attr("transform", e => "translate(" + getNodeX(e, e.id === d.id) + "," + getNodeY(e, e.id === d.id) + ")")
+        ring1Nodes.transition()
+          .attr("transform", e => "translate(" + getNodeX(e, e.id === d.id) + "," + getNodeY(e, e.id === d.id) + ")")
+          .duration(transitionDurationMs)
 
         // Remove existing ring of keywords
         ring1Nodes.filter(e => e.id !== d.id).selectAll('.ring2').remove()
-        
+
         // TODO Raise selection
-        if (this !== undefined) d3.select(this.parent).raise() 
+        if (this !== undefined) d3.select(this.parent).raise()
 
         // Show keyword ring on selection
         const selKeyWords = ring1Nodes.filter(e => e.id === d.id).selectAll('.ring2')
@@ -165,29 +170,33 @@ const NetworkGraph = (props) => {
           .append('g')
           .classed('ring2', true)
           .attr("transform", e => "translate(" + getNode2X(e, radiusX) + "," + getNode2Y(e, radiusY) + ")")
-          
+
         selKeyWords.append("ellipse")
-            .classed('node-shape', true)
-            .attr("rx", subNodeRadiusX)
-            .attr("ry", subNodeRadiusY)
-            .style("fill", selColor)
- 
+          .classed('node-shape', true)
+          .attr("rx", subNodeRadiusX)
+          .attr("ry", subNodeRadiusY)
+          .style("fill", selColor)
+          .style("opacity", 0)
+          .transition()
+          .style("opacity", 1)
+          .duration(transitionDurationMs)
+
         selKeyWords.append("foreignObject")
-            .attr("width", 2 * subNodeRadiusX)
-            .attr("height", 2 * subNodeRadiusY)
-            .attr("x", -subNodeRadiusX)
-            .attr("y", -subNodeRadiusY)
-            .append("xhtml:div")
-            .classed("label", true)
-            .style("line-height", (2 * subNodeRadiusY) + 'px')
-            .style("font-size", selSubFontSize + "px")
-            .html(e => '<span>' + e.name + '</span>')
+          .attr("width", 2 * subNodeRadiusX)
+          .attr("height", 2 * subNodeRadiusY)
+          .attr("x", -subNodeRadiusX)
+          .attr("y", -subNodeRadiusY)
+          .append("xhtml:div")
+          .classed("label", true)
+          .style("line-height", (2 * subNodeRadiusY) + 'px')
+          .style("font-size", selSubFontSize + "px")
+          .html(e => '<span>' + e.name + '</span>')
 
         selKeyWords.on('click', e => {
           // Set selection on all ring2 keyword nodes
           selKeyWords.selectAll('ellipse')
             .classed('selected', f => f.id === e.id)
-           
+
           // Signal selection to parent
           props.onClick(d.id, d.name, e.id, e.name)
         })
