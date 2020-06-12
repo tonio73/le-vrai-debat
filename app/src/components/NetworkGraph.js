@@ -11,7 +11,7 @@ const NetworkGraph = (props) => {
   const centerX = props.width / 2, centerY = props.height / 2
 
   // Ring 1 : main topics
-  const ring1Radius = 250, ring1RadiusDelta = 30, ring1RadiusDeltaSel = 80;
+  const ring1Radius = 250, ring1RadiusDelta = 0, ring1RadiusDeltaSel = 60;
   const ring1PhaseShift = 2 * Math.PI / (graph.nodes.length);
 
   // Ring 2 : keywords
@@ -27,15 +27,18 @@ const NetworkGraph = (props) => {
   //const [tooltipText, setTooltipText] = React.useState('')
 
   function getRadiusX(d) {
-    return (d.votesCount) ? (8 * Math.log(d.votesCount)) : defaultRadiusX;
+    if(d.id === 'root') return 120;
+    return (d.votesCount) ? (2.6e-1 * Math.sqrt(d.votesCount)) : defaultRadiusX;
   }
 
   function getRadiusY(d) {
-    return (d.votesCount) ? (4 * Math.log(d.votesCount)) : defaultRadiusY;
+    if(d.id === 'root') return 100;
+    return (d.votesCount) ? (2.2e-1 * Math.sqrt(d.votesCount)) : defaultRadiusY;
   }
 
   function getFontSize(d) {
-    return ((d.votesCount) ? (2 * Math.log(d.votesCount / Math.max(30, d.name.length))) : defaultFontSize);
+    if(d.id === 'root') return 36;
+    return ((d.votesCount) ? (3.5e-1 * Math.sqrt(d.votesCount / Math.max(30, d.name.length))) : defaultFontSize);
   }
 
   function getColor(d) {
@@ -135,7 +138,7 @@ const NetworkGraph = (props) => {
       allNodes.on("click", d => {
 
         const selColor = getColor(d)
-        const selSubFontSize = 0.8 * getFontSize(d)
+        const selSubFontSize = Math.min(Math.max(0.8 * getFontSize(d), 9), 14)
         const radiusX = getRadiusX(d), radiusY = getRadiusY(d)
 
         // Set selection on all nodes

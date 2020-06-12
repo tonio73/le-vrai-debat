@@ -18,7 +18,7 @@ const Chart = (props) => {
       if (props.zoomtool) {
         svg.call(d3.zoom()
           .extent([[0, 0], [props.width, props.height]])
-          .scaleExtent([1, 1])
+          .scaleExtent([1, 2])
           .on("zoom", zoomed));
       }
 

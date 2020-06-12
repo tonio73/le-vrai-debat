@@ -5,7 +5,7 @@
 }
 
 .chart-wrap {
-  flex: 50%;
+  flex: 50% 1;
 }
 
 .contributions-wrap {
