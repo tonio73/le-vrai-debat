@@ -36,7 +36,7 @@ const ContributionItem = (props) => {
 
   const dynStyle = {
     color: props.color,
-    'border-color': props.color
+    borderColor: props.color
   }
 
   return <li key={props.id}>

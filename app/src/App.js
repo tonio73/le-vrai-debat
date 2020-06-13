@@ -6,8 +6,6 @@ import Chart from './components/Chart'
 import NetworkGraph from './components/NetworkGraph'
 import ContributionList from './components/ContributionList'
 
-var d3 = require("d3")
-
 function App() {
 
   // Topic color palettes for node shape
@@ -15,14 +13,14 @@ function App() {
   // Column 3
   const colorPalette = ['#E6B0AA', '#D7BDE2', '#A9CCE3', 
                         '#A3E4D7', '#FAD7A0', '#F5B7B1', 
-                        '#D2B4DE', '#A9DFBF', '#F9E79F', ]
+                        '#D2B4DE', '#A9DFBF', '#F9E79F']
   // Topic color palettes for texts and scale
   // From https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
   // Column 5 or 6
   const colorPaletteScale = ['#CD6155', '#9B59B6', '#2980B9', 
                             '#1ABC9C', '#F39C12', '#E74C3C',
-                            '#8E44AD',  '#27AE60', '#F1C40F', ]
-  const colorScaleRoot = '#808B96'
+                            '#8E44AD',  '#27AE60', '#F1C40F']
+                            
   // Contribution "quantiles" = repartition by importance
   const quantiles = [500, 1000, 2500, 4000]
 
@@ -30,7 +28,6 @@ function App() {
   const [filterTitle, setFilterTitle] = React.useState({topic: null, keyword: null})
   const [selectedContributions, setSelectedContributions] = React.useState([])
   const [selectionId, setSelectionId] = React.useState("root_unknown")
-  const [selectedColor, setSelectedColor] = React.useState('black')
 
   // Get the contributions related to the topic (& keyword) or the whole (id="root")
   function getTopicContributions(topic_id, keyword_id) {
