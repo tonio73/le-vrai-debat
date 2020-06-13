@@ -141,7 +141,7 @@ const NetworkGraph = (props) => {
       allNodes.on("click", d => {
 
         const selColor = getColor(d)
-        const selSubFontSize = Math.min(Math.max(0.8 * getFontSize(d), 9), 14)
+        const selSubFontSize = Math.min(Math.max(0.8 * getFontSize(d), 9), 12)
         const radiusX = getRadiusX(d), radiusY = getRadiusY(d)
 
         // Set selection on all nodes
@@ -176,6 +176,7 @@ const NetworkGraph = (props) => {
           .classed('ring2', true)
           .attr("transform", e => "translate(" + getNode2X(e, radiusX) + "," + getNode2Y(e, radiusY) + ")")
 
+        // Keyword node shape
         selKeyWords.append("ellipse")
           .classed('node-shape', true)
           .attr("rx", subNodeRadiusX)
@@ -186,6 +187,7 @@ const NetworkGraph = (props) => {
           .style("opacity", 1)
           .duration(transitionDurationMs)
 
+        // Keyword node text
         selKeyWords.append("foreignObject")
           .attr("width", 2 * subNodeRadiusX)
           .attr("height", 2 * subNodeRadiusY)
@@ -214,17 +216,17 @@ const NetworkGraph = (props) => {
           setTooltipBody(d.votesCount + " votes dont " + d.votesCountOk + " favorables")
 
           d3.select(tooltipRef.current)
-            .attr("transform", "translate(" + (d3.event.clientX+25)+ "," + (d3.event.clientY+25) + ")")
+            .attr("transform", "translate(" + (d3.event.clientX+10)+ "," + (d3.event.clientY+10) + ")")
             .transition()
             .attr("opacity", 1)
-            .duration(500)
+            .duration(200)
         })
         .on("mouseout", function (d) {
 
           d3.select(tooltipRef.current)
             .transition()
             .attr("opacity", 0)
-            .duration(500)
+            .duration(200)
         })
     })
 

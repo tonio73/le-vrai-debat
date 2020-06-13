@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Scale from './Scale'
 
 const ContributionItem = (props) => {
 
@@ -33,6 +34,11 @@ const ContributionItem = (props) => {
     }, 10)
   }, [bodyRef])
 
+  const dynStyle = {
+    color: props.color,
+    'border-color': props.color
+  }
+
   return <li key={props.id}>
     <h1 className="contribution-title">{props.contrib.contribution_versions_title}</h1>
     <div className="contribution-body" >
@@ -41,17 +47,23 @@ const ContributionItem = (props) => {
     </div>
     <div className="bottom">
       <div className="buttons">{showExpand && <button onClick={toggleExpand}>{command}</button>}</div>
-      <div className="vote-count">{props.contrib.contributions_votesCount} votes dont {props.contrib.contributions_votesCountOk} favorables</div>
+      <div className="scale"><Scale radius={8} color={props.color} score={props.contrib.contributions_votesCountOk} quantiles={props.quantiles}></Scale></div>
+      <div className="vote-count"  style={dynStyle}>{props.contrib.contributions_votesCount} votes dont {props.contrib.contributions_votesCountOk} favorables</div>
     </div>
   </li>
 }
 
 const ContributionList = (props) => {
 
+  function getTopicScaleColor(id) {
+    return props.colorPalette[id % props.colorPalette.length]
+  }
+
   var contributionSummary = null
   if (props.contributions !== undefined) {
     contributionSummary = props.contributions
-      .map((c, i) => <ContributionItem key={props.id + '_' + i} id={props.id + '_' + i} contrib={c}></ContributionItem>)
+      .map((c, i) => <ContributionItem key={props.id + '_' + i} id={props.id + '_' + i} contrib={c} 
+        color={getTopicScaleColor(c.topic_id)} quantiles={props.quantiles}></ContributionItem>)
   }
 
   var title = ''
@@ -72,6 +84,7 @@ const ContributionList = (props) => {
 
 ContributionList.propTypes = {
   title: PropTypes.object,
+  color: PropTypes.string,
   contributions: PropTypes.array
 }
 

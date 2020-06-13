@@ -38,6 +38,7 @@ svg .node-shape.selected{
 svg .label {
   cursor: pointer;
   text-align: center;
+  font-weight: 300;
 }
 
 svg .label span{
@@ -46,10 +47,14 @@ svg .label span{
   vertical-align: middle;
 }
 
+.scale svg circle{
+  stroke-width: 1px;
+}
+
 /*= Contribution list =*/
 
 .contribution-list-title {
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: 300;
   padding:  0 15px 5px 15px;
 }
@@ -62,7 +67,7 @@ svg .label span{
 
 .contribution-list > li {
   margin: 10px 15px 15px 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
   padding-bottom: 5px;
 }
 
@@ -101,6 +106,7 @@ svg .label span{
 
 .contribution-list .buttons {
   align-self: center;
+  color: inherit;
 }
 
 .buttons button{

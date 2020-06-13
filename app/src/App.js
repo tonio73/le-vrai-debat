@@ -10,10 +10,27 @@ var d3 = require("d3")
 
 function App() {
 
+  // Topic color palettes for node shape
+  // From https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+  // Column 3
+  const colorPalette = ['#E6B0AA', '#D7BDE2', '#A9CCE3', 
+                        '#A3E4D7', '#FAD7A0', '#F5B7B1', 
+                        '#D2B4DE', '#A9DFBF', '#F9E79F', ]
+  // Topic color palettes for texts and scale
+  // From https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+  // Column 5 or 6
+  const colorPaletteScale = ['#CD6155', '#9B59B6', '#2980B9', 
+                            '#1ABC9C', '#F39C12', '#E74C3C',
+                            '#8E44AD',  '#27AE60', '#F1C40F', ]
+  const colorScaleRoot = '#808B96'
+  // Contribution "quantiles" = repartition by importance
+  const quantiles = [500, 1000, 2500, 4000]
+
   const [loaded, setLoaded] = React.useState(false)
   const [filterTitle, setFilterTitle] = React.useState({topic: null, keyword: null})
   const [selectedContributions, setSelectedContributions] = React.useState([])
   const [selectionId, setSelectionId] = React.useState("root_unknown")
+  const [selectedColor, setSelectedColor] = React.useState('black')
 
   // Get the contributions related to the topic (& keyword) or the whole (id="root")
   function getTopicContributions(topic_id, keyword_id) {
@@ -65,11 +82,12 @@ function App() {
         <div className="chart-wrap">
           <Chart chartId='first' width={width} height={height} zoomtool={false}>
             <NetworkGraph width={width} height={height} data={graphData}
-              onClick={selectTopic} colors={d3.schemeSet3}></NetworkGraph>
+              onClick={selectTopic} colors={colorPalette}></NetworkGraph>
           </Chart>
         </div>
         <div className="contributions-wrap">
-          <ContributionList title={filterTitle} contributions={selectedContributions} id={selectionId}></ContributionList>
+          <ContributionList title={filterTitle} contributions={selectedContributions} id={selectionId} 
+            colorPalette={colorPaletteScale} quantiles={quantiles}></ContributionList>
         </div>
       </div>
     </div>
