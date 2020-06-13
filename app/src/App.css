@@ -13,7 +13,7 @@
 
 .contributions-wrap {
   flex: 50%;
-  overflow: scroll;
+  display: flex;
 }
 
 /*== Components ==*/
@@ -53,40 +53,44 @@ svg .label span{
 
 /*= Contribution list =*/
 
+.contribution-list {
+  overflow: scroll;
+}
+
 .contribution-list-title {
   font-size: 1.7em;
   font-weight: 300;
   padding:  0 15px 5px 15px;
 }
 
-.contribution-list {
+.contribution-list-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.contribution-list > li {
+.contribution-list-list > li {
   margin: 10px 15px 15px 15px;
   border-bottom: 1px solid #eee;
   padding-bottom: 5px;
 }
 
-.contribution-list .contribution-title {
+.contribution-list-item .contribution-title {
   padding-bottom: 2px;
   font-size: 1.1em;
   font-weight: 500;
 }
 
-.contribution-list .contribution-body{
+.contribution-list-item .contribution-body{
   margin-bottom: 5px;
 }
 
-.contribution-list .contribution-body .text{
+.contribution-list-item .contribution-body .text{
   max-height: 80px;
   overflow: hidden;
 }
 
-.contribution-list .contribution-body .mask{
+.contribution-list-item .contribution-body .mask{
   height: 30px;
   width: 100%;
   margin-top: -30px;
@@ -94,22 +98,22 @@ svg .label span{
   background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-.contribution-list .contribution-body .text.expanded {
+.contribution-list-item .contribution-body .text.expanded {
   max-height: none;
 }
 
-.contribution-list .bottom{
+.contribution-list-item .bottom{
   /*padding-top: 5px;*/
   display: flex;
   justify-content: space-between;
 }
 
-.contribution-list .buttons {
+.contribution-list-item .buttons {
   align-self: center;
   color: inherit;
 }
 
-.buttons button{
+.contribution-list-item .buttons button{
   background-color: transparent;
   border-radius: 100%;
   border: 1px solid #aaa;

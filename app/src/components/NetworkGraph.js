@@ -165,10 +165,10 @@ const NetworkGraph = (props) => {
         // Remove existing ring of keywords
         ring1Nodes.filter(e => e.id !== d.id).selectAll('.ring2').remove()
 
-        // TODO Raise selection
-        if (this !== undefined) d3.select(this.parent).raise()
+        // TODO FIX Raise selection
+        allNodes.filter(e => e.id === d.id).selectAll('g').raise()
 
-        // Show keyword ring on selection
+        // Show keyword ring on selection (Note: this is undefined)
         const selKeyWords = ring1Nodes.filter(e => e.id === d.id).selectAll('.ring2')
           .data(d => d.keywords)
           .enter()

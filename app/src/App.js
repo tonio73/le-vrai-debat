@@ -20,7 +20,7 @@ function App() {
   const colorPaletteScale = ['#CD6155', '#9B59B6', '#2980B9', 
                             '#1ABC9C', '#F39C12', '#E74C3C',
                             '#8E44AD',  '#27AE60', '#F1C40F']
-                            
+
   // Contribution "quantiles" = repartition by importance
   const quantiles = [500, 1000, 2500, 4000]
 

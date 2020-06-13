@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Scale from './Scale'
 
+
+// Contribution item
 const ContributionItem = (props) => {
 
   const bodyRef = React.useRef()
@@ -39,7 +41,7 @@ const ContributionItem = (props) => {
     borderColor: props.color
   }
 
-  return <li key={props.id}>
+  return <li key={props.id} className="contribution-list-item">
     <h1 className="contribution-title">{props.contrib.contribution_versions_title}</h1>
     <div className="contribution-body" >
       <div className={"text " + expanded} ref={bodyRef}>{props.contrib.contribution_versions_bodyText}</div>
@@ -53,7 +55,10 @@ const ContributionItem = (props) => {
   </li>
 }
 
+// Contribution list
 const ContributionList = (props) => {
+
+  const contributionListRef = React.useRef(null)
 
   function getTopicScaleColor(id) {
     return props.colorPalette[id % props.colorPalette.length]
@@ -74,9 +79,14 @@ const ContributionList = (props) => {
     }
   }
 
-  return <div>
+  React.useEffect(() => {
+    console.log("Setting scroll position")
+    contributionListRef.current.scrollTo(0, 0)
+  }, [contributionSummary])
+
+  return <div ref={contributionListRef} className="contribution-list">
     {props.title && <h1 className='contribution-list-title'>{title}</h1>}
-    <ul className="contribution-list">
+    <ul className="contribution-list-list">
       {contributionSummary}
     </ul>
   </div>
