@@ -80,7 +80,6 @@ const ContributionList = (props) => {
   }
 
   React.useEffect(() => {
-    console.log("Setting scroll position")
     contributionListRef.current.scrollTo(0, 0)
   }, [contributionSummary])
 
