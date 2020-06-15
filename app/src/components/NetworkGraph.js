@@ -234,9 +234,10 @@ const NetworkGraph = (props) => {
     <g ref={chartRef}>
     </g>
     <g ref={tooltipRef}>
-      <Tooltip title={tooltipTitle} body={tooltipBody}></Tooltip>
     </g>
   </g>
+
+  //  <Tooltip title={tooltipTitle} body={tooltipBody}></Tooltip>
 }
 
 NetworkGraph.propTypes = {
