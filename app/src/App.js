@@ -1,10 +1,13 @@
-import React from 'react';
-import axios from 'axios';
 import './App.css';
 import graphData from './data/le-vrai-debat.json'
 import Chart from './components/Chart'
 import NetworkGraph from './components/NetworkGraph'
 import ContributionList from './components/ContributionList'
+
+import React from 'react';
+import { createBrowserHistory } from 'history';
+import axios from 'axios';
+
 
 function App() {
 
@@ -32,7 +35,7 @@ function App() {
   // Get the contributions related to the topic (& keyword) or the whole (id="root")
   function getTopicContributions(topic_id, keyword_id) {
     if (keyword_id === undefined || keyword_id === null) {
-      const filePath = '/data/topic_' + topic_id + '_main_contributions.json'
+      const filePath = './data/topic_' + topic_id + '_main_contributions.json'
       axios.get(filePath)
         .then((result) => {
           setSelectedContributions(result.data)
@@ -42,7 +45,7 @@ function App() {
         })
     }
     else {
-      const filePath = '/data/topic_' + topic_id + '_keyword_' + keyword_id + '_main_contributions.json'
+      const filePath = './data/topic_' + topic_id + '_keyword_' + keyword_id + '_main_contributions.json'
       axios.get(filePath)
         .then((result) => {
           setSelectedContributions(result.data)
@@ -90,5 +93,10 @@ function App() {
     </div>
   );
 }
+
+// Locate the final installation within a subdirectory
+export const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL
+}); 
 
 export default App;
