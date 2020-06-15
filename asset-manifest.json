@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/le-vrai-debat/static/css/main.3386dd16.chunk.css",
-    "main.js": "/le-vrai-debat/static/js/main.5f362b1e.chunk.js",
-    "main.js.map": "/le-vrai-debat/static/js/main.5f362b1e.chunk.js.map",
+    "main.js": "/le-vrai-debat/static/js/main.a8faad2d.chunk.js",
+    "main.js.map": "/le-vrai-debat/static/js/main.a8faad2d.chunk.js.map",
     "runtime-main.js": "/le-vrai-debat/static/js/runtime-main.508e93ea.js",
     "runtime-main.js.map": "/le-vrai-debat/static/js/runtime-main.508e93ea.js.map",
-    "static/js/2.5713a561.chunk.js": "/le-vrai-debat/static/js/2.5713a561.chunk.js",
-    "static/js/2.5713a561.chunk.js.map": "/le-vrai-debat/static/js/2.5713a561.chunk.js.map",
+    "static/js/2.4e822fb2.chunk.js": "/le-vrai-debat/static/js/2.4e822fb2.chunk.js",
+    "static/js/2.4e822fb2.chunk.js.map": "/le-vrai-debat/static/js/2.4e822fb2.chunk.js.map",
     "index.html": "/le-vrai-debat/index.html",
-    "precache-manifest.95e3b6d6d7a1695597d970ab9ac0e922.js": "/le-vrai-debat/precache-manifest.95e3b6d6d7a1695597d970ab9ac0e922.js",
+    "precache-manifest.97216cf393a723453ccac76d9b824429.js": "/le-vrai-debat/precache-manifest.97216cf393a723453ccac76d9b824429.js",
     "service-worker.js": "/le-vrai-debat/service-worker.js",
     "static/css/main.3386dd16.chunk.css.map": "/le-vrai-debat/static/css/main.3386dd16.chunk.css.map",
-    "static/js/2.5713a561.chunk.js.LICENSE.txt": "/le-vrai-debat/static/js/2.5713a561.chunk.js.LICENSE.txt"
+    "static/js/2.4e822fb2.chunk.js.LICENSE.txt": "/le-vrai-debat/static/js/2.4e822fb2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.508e93ea.js",
-    "static/js/2.5713a561.chunk.js",
+    "static/js/2.4e822fb2.chunk.js",
     "static/css/main.3386dd16.chunk.css",
-    "static/js/main.5f362b1e.chunk.js"
+    "static/js/main.a8faad2d.chunk.js"
   ]
 }
