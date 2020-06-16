@@ -24,17 +24,12 @@
 
 svg .link {
   stroke-width: 1px;
-  stroke: #eee;
+  stroke: #aaa;
 }
 
 svg .node-shape{
   stroke-width: 1px;
-  stroke: #eee;
-}
-
-svg .node-shape.selected{
-  stroke-width: 3px;
-  stroke: #f00;
+  stroke: #aaa;
 }
 
 svg .label {
@@ -49,6 +44,29 @@ svg .label span{
   vertical-align: middle;
 }
 
+/* Selected */
+
+svg .node.selected .node-shape{
+  stroke-width: 3px;
+  stroke: #f00;
+}
+
+/* Hover */
+
+svg .node.hover .node-shape{
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+svg .node.hover .label {
+  color: #2C3E50;
+}
+
+svg .node.selected.hover .node-shape{
+  stroke-width: 3px;
+  stroke: #C0392B;
+}
+
 /*= Contribution list =*/
 
 .contribution-list {
@@ -56,10 +74,16 @@ svg .label span{
   color: #17202A;
 }
 
-.contribution-list-title {
+.contribution-list > h1 {
   font-size: 1.7em;
   font-weight: 300;
-  padding:  0 15px 5px 15px;
+  margin:  10px 15px 10px 15px;
+}
+
+.contribution-list > h2 {
+  font-size: 1.0em;
+  font-weight: 500;
+  margin:  5px 15px 15px 15px;
 }
 
 .contribution-list-list {
@@ -74,7 +98,7 @@ svg .label span{
   padding-bottom: 5px;
 }
 
-.contribution-list-item .contribution-title {
+.contribution-list-item > h1 {
   padding-bottom: 2px;
   font-size: 1.1em;
   font-weight: 500;
@@ -113,19 +137,24 @@ svg .label span{
 }
 
 .contribution-list-item .buttons button{
+  width: 20px;
   background-color: transparent;
-  border-radius: 100%;
-  display: flex;
+  border-radius: 5px;
   border: 1px solid #aaa;
 }
 
+.contribution-list-item .buttons button:hover{
+  background-color: #1C2833;
+  color: white;
+}
+
 .contribution-list-item .vote-count {
-  font-weight: 500;
   display: flex;
   align-items: center;
 }
 
 .contribution-list .vote-count .count {
+  font-weight: 500;
   padding-bottom: 3px;
 }
 
@@ -135,28 +164,4 @@ svg .label span{
 
 .scale svg circle{
   stroke-width: 1px;
-}
-
-/*= Misc. =*/
-
-.word-cloud {
-  cursor: pointer;
-}
-
-.tooltip {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 2px 2px;
-  /*box-shadow: 3px 3px 2px 3px #ccc;*/
-  margin-right: 7px;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.tooltip .title {
-  font-weight: 500;
-  font-size: 1.1em;
-  text-align: center;
-  margin-bottom: 5px;
 }

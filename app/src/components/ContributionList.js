@@ -2,6 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Scale from './Scale'
 
+function number_format(n) {
+  return Intl.NumberFormat().format(n)
+}
+
 
 // Contribution item
 const ContributionItem = (props) => {
@@ -42,16 +46,16 @@ const ContributionItem = (props) => {
   }
 
   return <li key={props.id} className="contribution-list-item">
-    <h1 className="contribution-title">{props.contrib.contribution_versions_title}</h1>
+    <h1>{props.contrib.contribution_versions_title}</h1>
     <div className="contribution-body" >
       <div className={"text " + expanded} ref={bodyRef}>{props.contrib.contribution_versions_bodyText}</div>
       {expanded === '' && <div className='mask'></div>}
     </div>
     <div className="bottom">
       <div className="buttons">{showExpand && <button onClick={toggleExpand}>{command}</button>}</div>
-      <div className className="vote-count" style={dynStyle}>
-      <div className="scale"><Scale radius={8} color={props.color} score={props.contrib.contributions_votesCountOk} quantiles={props.quantiles}></Scale></div>
-      <div className="count">{props.contrib.contributions_votesCountOk} votes favorables sur {props.contrib.contributions_votesCount} exprimés</div>
+      <div className="vote-count" style={dynStyle}>
+        <div className="scale"><Scale radius={8} color={props.color} score={props.contrib.contributions_votesCountOk} quantiles={props.quantiles}></Scale></div>
+        <div className="count">{number_format(props.contrib.contributions_votesCountOk)} votes favorables / {number_format(props.contrib.contributions_votesCount)} exprimés</div>
       </div>
     </div>
   </li>
@@ -69,15 +73,24 @@ const ContributionList = (props) => {
   var contributionSummary = null
   if (props.contributions !== undefined) {
     contributionSummary = props.contributions
-      .map((c, i) => <ContributionItem key={props.id + '_' + i} id={props.id + '_' + i} contrib={c} 
+      .map((c, i) => <ContributionItem key={props.id + '_' + i} id={props.id + '_' + i} contrib={c}
         color={getTopicScaleColor(c.topic_id)} quantiles={props.quantiles}></ContributionItem>)
   }
 
-  var title = ''
+  var title = '', subtitle = '', dynStyle = {};
   if (props.title) {
     title += props.title.topic
     if (!!props.title.keyword) {
       title += ' > ' + props.title.keyword
+    }
+    subtitle = number_format(props.title.votesCountOk) + " votes favorables / " + number_format(props.title.votesCountOk) + " exprimés"
+
+    if (props.title.topic_id !== undefined) {
+      const color = getTopicScaleColor(props.title.topic_id)
+      dynStyle = {
+        color: color,
+        borderColor: color
+      }
     }
   }
 
@@ -86,7 +99,8 @@ const ContributionList = (props) => {
   }, [contributionSummary])
 
   return <div ref={contributionListRef} className="contribution-list">
-    {props.title && <h1 className='contribution-list-title'>{title}</h1>}
+    <h1>{title}</h1>
+    <h2 style={dynStyle}>{subtitle}</h2>
     <ul className="contribution-list-list">
       {contributionSummary}
     </ul>

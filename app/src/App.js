@@ -59,8 +59,15 @@ function App() {
   // Update the view when a topic (and a keyword) are selected
   function selectTopic(topic_id, topic_title, keyword_id, keyword) {
     console.log("Topic clicked: topic='" + topic_title + "', keyword=" + keyword)
+    var topic;
+    if(topic_id === 'root') {
+      topic = graphData.root[0]
+    }
+    else {
+      topic = graphData.nodes[topic_id]
+    }
 
-    setFilterTitle({topic: topic_title, keyword: keyword})
+    setFilterTitle({topic: topic_title, keyword: keyword, votesCount: topic.votesCount, votesCountOk: topic.votesCountOk, topic_id: topic_id})
     getTopicContributions(topic_id, keyword_id)
     setSelectionId('' + topic_id + '_' + ((keyword_id !== null)?keyword_id:'unknown'))
   }

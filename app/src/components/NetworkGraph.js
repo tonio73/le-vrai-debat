@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Tooltip from './Tooltip'
 
 const d3 = require("d3")
 
@@ -27,9 +26,6 @@ const NetworkGraph = (props) => {
 
   // References to DOM elements
   const chartRef = React.useRef('')
-  const tooltipRef = React.useRef('')
-  const [tooltipTitle, setTooltipTitle] = React.useState('')
-  const [tooltipBody, setTooltipBody] = React.useState('')
 
   function getRadiusX(d) {
     if (d.id === 'root') return 120;
@@ -79,10 +75,6 @@ const NetworkGraph = (props) => {
   React.useEffect(
     () => {
 
-      // Hide tooltip
-      d3.select(tooltipRef.current)
-        .attr("opacity", 0)
-
       // Node Wraps
       const nodeWraps = d3.select(chartRef.current)
         .selectAll(".ring1")
@@ -110,8 +102,9 @@ const NetworkGraph = (props) => {
         .data(graph.root)
         .enter()
         .append('g')
-        .classed('node', true)
         .classed('root', true)
+        .classed('node', true)
+        .classed('selected', true) // Selected by default
         .attr("transform", "translate(" + centerX + "," + centerY + ")")
 
       // Reselect root + ring 1 nodes
@@ -145,11 +138,7 @@ const NetworkGraph = (props) => {
         const radiusX = getRadiusX(d), radiusY = getRadiusY(d)
 
         // Set selection on all nodes
-        allNodes.selectAll('ellipse')
-          .classed('selected', e => e.id === d.id)
-
-        allNodes.selectAll('.ring2 ellipse')
-          .classed('selected', false)
+        allNodes.classed('selected', e => e.id === d.id)
 
         d3.select(chartRef.current)
           .transition()
@@ -169,12 +158,16 @@ const NetworkGraph = (props) => {
         allNodes.filter(e => e.id === d.id).selectAll('g').raise()
 
         // Show keyword ring on selection (Note: this is undefined)
-        const selKeyWords = ring1Nodes.filter(e => e.id === d.id).selectAll('.ring2')
+        const selKeyWordWraps = ring1Nodes.filter(e => e.id === d.id).selectAll('.ring2')
+          .classed('selected', false)
           .data(d => d.keywords)
           .enter()
           .append('g')
           .classed('ring2', true)
           .attr("transform", e => "translate(" + getNode2X(e, radiusX) + "," + getNode2Y(e, radiusY) + ")")
+
+        const selKeyWords = selKeyWordWraps.append('g')
+          .classed('node', true)
 
         // Keyword node shape
         selKeyWords.append("ellipse")
@@ -201,43 +194,40 @@ const NetworkGraph = (props) => {
 
         selKeyWords.on('click', e => {
           // Set selection on all ring2 keyword nodes
-          selKeyWords.selectAll('ellipse')
-            .classed('selected', f => f.id === e.id)
+          selKeyWords.classed('selected', f => f.id === e.id)
 
           // Signal selection to parent
           props.onClick(d.id, d.name, e.id, e.name)
         })
+        .on("mouseover", e => {
+          d3.select(chartRef.current).selectAll('.ring2 > .node')
+            .classed('hover', f => f.id === e.id)
+        })
+        .on("mouseout", e => {
+          d3.select(chartRef.current).selectAll('.ring2 > .node')
+            .classed('hover', false)
+        })
+
+        // Complete selection
+        
 
         // Signal selection to parent
         props.onClick(d.id, d.name, null)
       })
-        .on("mouseover", function (d) {
-          setTooltipTitle(d.name)
-          setTooltipBody(d.votesCount + " votes dont " + d.votesCountOk + " favorables")
-
-          d3.select(tooltipRef.current)
-            .attr("transform", "translate(" + (d3.event.clientX+10)+ "," + (d3.event.clientY+10) + ")")
-            .transition()
-            .attr("opacity", 1)
-            .duration(200)
+        .on("mouseover", d => {
+          d3.select(chartRef.current).selectAll('.ring1 > .node')
+            .classed('hover', e => e.id === d.id)
         })
-        .on("mouseout", function (d) {
-
-          d3.select(tooltipRef.current)
-            .transition()
-            .attr("opacity", 0)
-            .duration(200)
+        .on("mouseout", d => {
+          d3.select(chartRef.current).selectAll('.ring1 > .node')
+            .classed('hover', false)
         })
     })
 
   return <g className="network-graph">
     <g ref={chartRef}>
     </g>
-    <g ref={tooltipRef}>
-    </g>
   </g>
-
-  //  <Tooltip title={tooltipTitle} body={tooltipBody}></Tooltip>
 }
 
 NetworkGraph.propTypes = {
