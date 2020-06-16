@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/le-vrai-debat/precache-manifest.a8a9ec9b8c1145b25865e8dd1433cec6.js"
+  "/le-vrai-debat/precache-manifest.46cc88be19f9f1dfb6c9b341898fbaef.js"
 );
 
 self.addEventListener('message', (event) => {

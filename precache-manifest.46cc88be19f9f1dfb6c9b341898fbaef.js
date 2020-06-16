@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e1a6df2625c5dd24981be2f530edba2a",
+    "revision": "988564bb56c50cb8871245803d908304",
     "url": "/le-vrai-debat/index.html"
   },
   {
-    "revision": "7c737c4b1f36bcb93723",
+    "revision": "37019a40f7228df51183",
     "url": "/le-vrai-debat/static/css/main.ed811831.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/le-vrai-debat/static/js/2.ec321144.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7c737c4b1f36bcb93723",
-    "url": "/le-vrai-debat/static/js/main.92468810.chunk.js"
+    "revision": "37019a40f7228df51183",
+    "url": "/le-vrai-debat/static/js/main.c6e82d8c.chunk.js"
   },
   {
     "revision": "0f5c28fd21c13308083c",
