@@ -33,7 +33,7 @@ const ContributionItem = (props) => {
       else {
         setShowExpand(true)
       }
-    }, 10)
+    }, 100)
   }, [bodyRef])
 
   const dynStyle = {
@@ -49,8 +49,10 @@ const ContributionItem = (props) => {
     </div>
     <div className="bottom">
       <div className="buttons">{showExpand && <button onClick={toggleExpand}>{command}</button>}</div>
+      <div className className="vote-count" style={dynStyle}>
       <div className="scale"><Scale radius={8} color={props.color} score={props.contrib.contributions_votesCountOk} quantiles={props.quantiles}></Scale></div>
-      <div className="vote-count"  style={dynStyle}>{props.contrib.contributions_votesCount} votes dont {props.contrib.contributions_votesCountOk} favorables</div>
+      <div className="count">{props.contrib.contributions_votesCountOk} votes favorables sur {props.contrib.contributions_votesCount} exprimés</div>
+      </div>
     </div>
   </li>
 }

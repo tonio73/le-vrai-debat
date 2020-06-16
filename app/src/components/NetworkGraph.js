@@ -11,7 +11,7 @@ const NetworkGraph = (props) => {
   const centerX = props.width / 2, centerY = props.height / 2
 
   // Ring 1 : main topics
-  const ring1Radius = 250, ring1RadiusDeltaSel = 60;
+  const ring1Radius = 250, ring1RadiusDeltaSel = 130;
   const ring1PhaseShift = 2 * Math.PI / (graph.nodes.length);
 
   // Ring 2 : keywords

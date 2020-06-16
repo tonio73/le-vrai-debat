@@ -5,10 +5,12 @@
   min-height: 100vh;
   max-height: 100vh;
   height: 100vh;
+  flex-direction: row;
 }
 
 .chart-wrap {
   flex: 50% 1;
+  background-color: #212F3C;
 }
 
 .contributions-wrap {
@@ -32,7 +34,7 @@ svg .node-shape{
 
 svg .node-shape.selected{
   stroke-width: 3px;
-  stroke: #faa;
+  stroke: #f00;
 }
 
 svg .label {
@@ -47,14 +49,11 @@ svg .label span{
   vertical-align: middle;
 }
 
-.scale svg circle{
-  stroke-width: 1px;
-}
-
 /*= Contribution list =*/
 
 .contribution-list {
   overflow: scroll;
+  color: #17202A;
 }
 
 .contribution-list-title {
@@ -79,6 +78,7 @@ svg .label span{
   padding-bottom: 2px;
   font-size: 1.1em;
   font-weight: 500;
+  color: #1C2833;
 }
 
 .contribution-list-item .contribution-body{
@@ -103,25 +103,38 @@ svg .label span{
 }
 
 .contribution-list-item .bottom{
-  /*padding-top: 5px;*/
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .contribution-list-item .buttons {
-  align-self: center;
   color: inherit;
 }
 
 .contribution-list-item .buttons button{
   background-color: transparent;
   border-radius: 100%;
+  display: flex;
   border: 1px solid #aaa;
 }
 
-.contribution-list .vote-count {
+.contribution-list-item .vote-count {
   font-weight: 500;
-  align-self: center;
+  display: flex;
+  align-items: center;
+}
+
+.contribution-list .vote-count .count {
+  padding-bottom: 3px;
+}
+
+.contribution-list-item .scale {
+  margin-right: 10px;
+}
+
+.scale svg circle{
+  stroke-width: 1px;
 }
 
 /*= Misc. =*/
