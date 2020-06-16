@@ -37,7 +37,7 @@ const ContributionItem = (props) => {
       else {
         setShowExpand(true)
       }
-    }, 100)
+    }, 200)
   }, [bodyRef])
 
   const dynStyle = {
